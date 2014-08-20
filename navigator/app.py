@@ -4,15 +4,13 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
 
 def register_blueprints(app):
-    from navigator.navigator import navigator
+    from .navigator import navigator
     app.register_blueprint(navigator, url_prefix='/schemas')
 
 def register_extension(app):
+    from .models import db
     db.init_app(app)
 
 def create_app(name):
