@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Name</td>
+        </tr>
+    {% for column in columns %}
+        <tr>
+            <td>{{ column.name }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

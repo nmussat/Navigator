@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <ul>
+    {% for table in tables %}
+        <li><a href="/schemas/{{ schema }}/tables/{{ table }}">{{ table }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

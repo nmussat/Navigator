@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <ul>
+    {% for schema in schemas %}
+        <li><a href="/schemas/{{ schema }}">{{ schema }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,3 @@
+git+http://github.com/mitsuhiko/flask.git
+git+http://github.com/mitsuhiko/flask-sqlachemy.git
+psycopg2
