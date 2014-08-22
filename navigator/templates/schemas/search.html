@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <ul>
+    {% for match in matches %}
+    <li><a href="{{ match.url }} ">{{ match.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

@@ -1,14 +1,44 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <table>
+    <h2>Columns</h2>
+    <table class="table table-condensed">
         <tr>
             <th>Name</td>
+            <th>Type</td>
+            <th>Primary key</td>
+            <th>Indexed</td>
+            <th>Nullable</td>
+            <th>Default</td>
         </tr>
-    {% for column in columns %}
+        <tbody>
+            {% for column in columns %}
+                <tr>
+                    <td><a href="{{ url_for('.column_stats', schema=schema, table=table, column=column.name) }}">{{ column.name }}</a></td>
+                    <td>{{ column.type }}</td>
+                    <td>{{ column.primary_key }}</td>
+                    <td>{{ column.indexed }}</td>
+                    <td>{{ column.nullable }}</td>
+                    <td>{{ column.default }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Indexes</h2>
+    <table class="table table-condensed">
         <tr>
-            <td>{{ column.name }}</td>
+            <th>Name</td>
+            <th>Columns</td>
+            <th>Unique</td>
         </tr>
-    {% endfor %}
+        <tbody>
+            {% for index in indexes %}
+                <tr>
+                    <td>{{ index.name }}</td>
+                    <td>{{ index.column_names|join(', ') }}</td>
+                    <td>{{ index.unique }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% endblock %}

@@ -1,9 +1,16 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <ul>
-    {% for table in tables %}
-        <li><a href="/schemas/{{ schema }}/tables/{{ table }}">{{ table }}</a></li>
-    {% endfor %}
-    </ul>
+    <table class="table table-condensed">
+        <tr>
+            <th>Table</th>
+        </tr>
+        <tbody>
+            {% for table in tables %}
+                <tr>
+                    <td><a href="/schemas/{{ schema }}/tables/{{ table }}">{{ table }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

@@ -14,7 +14,7 @@ def register_extension(app):
     db.init_app(app)
 
 def create_app(name):
-    app = Flask(name, template_folder='navigator/templates')
+    app = Flask(name, template_folder='navigator/templates', static_folder='navigator/static')
     app.config.from_object('settings')
     app.config.from_envvar('APP_SETTINGS')
     register_extension(app)

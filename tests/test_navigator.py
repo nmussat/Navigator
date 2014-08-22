@@ -59,6 +59,11 @@ class NavigatorTestCase(unittest.TestCase):
         self.assertEqual(200, response.status_code)
         self.assertIn('public', response.data)
 
+    def test_schema_search(self):
+        response = self.client.get('/schemas/?q=test', content_type='application/json')
+        self.assertEqual(200, response.status_code)
+        self.assertIn('test', response.data)
+
     def test_tables(self):
         response = self.client.get('/schemas/public/tables', content_type='application/json')
         self.assertEqual(200, response.status_code)
