@@ -55,12 +55,12 @@ class NavigatorTestCase(unittest.TestCase):
         self.client = None
 
     def test_schema(self):
-        response = self.client.get('/schemas/', content_type='application/json')
+        response = self.client.get('/schemas', content_type='application/json')
         self.assertEqual(200, response.status_code)
         self.assertIn('public', response.data)
 
     def test_schema_search(self):
-        response = self.client.get('/schemas/?q=test', content_type='application/json')
+        response = self.client.get('/schemas?q=test', content_type='application/json')
         self.assertEqual(200, response.status_code)
         self.assertIn('test', response.data)
 

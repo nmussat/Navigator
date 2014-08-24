@@ -5,12 +5,13 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import json
 import sqlalchemy
-from itertools import chain
 
 from collections import OrderedDict
 from flask import Blueprint, render_template, request, url_for
+from itertools import chain
 
 from .models import db, PGStats
+from .utils import make_response
 
 navigator = Blueprint('navigator', __name__)
 
@@ -20,22 +21,6 @@ inspector = None
 def _setup():
     global inspector
     inspector = db.inspect(db.engine)
-
-
-class SQLTypeEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, sqlalchemy.sql.sqltypes.NullType):
-            return 'NULL'
-        if isinstance(obj, sqlalchemy.types.TypeEngine):
-            return str(obj)
-        return json.JSONEncoder.default(self, obj)
-
-
-def make_response(context, template=None):
-    if request.is_json or request.is_xhr:
-        return json.dumps(context, cls=SQLTypeEncoder)
-    if template:
-        return render_template(template, **context)
 
 
 def _search(q):
@@ -56,8 +41,8 @@ def _search(q):
     return matches
 
 
-@navigator.route('/')
-def schemas():
+@navigator.route('')
+def index():
     if 'q' in request.args:
         matches = _search(request.args['q'].lower())
         return make_response({'matches': matches}, template='schemas/search.html')
@@ -83,7 +68,6 @@ def table(schema, table):
     primary_keys = inspector.get_primary_keys(table, schema=schema)
     columns = inspector.get_columns(table, schema=schema)
     indexes = inspector.get_indexes(table, schema=schema)
-    # indexed_columns = set([name for name for name in names in index['column_names'] for index in indexes])
     indexed_columns = set(chain(*[index['column_names'] for index in indexes]))
 
     for column in columns:

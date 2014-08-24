@@ -8,6 +8,8 @@ from flask import Flask
 def register_blueprints(app):
     from .navigator import navigator
     app.register_blueprint(navigator, url_prefix='/schemas')
+    from .query import query_manager
+    app.register_blueprint(query_manager, url_prefix='/query_manager')
 
 def register_extension(app):
     from .assets import assets

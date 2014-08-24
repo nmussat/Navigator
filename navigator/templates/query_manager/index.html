@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <form action="{{ url_for('.index') }}">
+        <textarea id="editor" name="query" class="form-control">{{ query }}</textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if rows %}
+        <table class="table table-condensed">
+            <tr>
+                {% for key in rows[0].keys() %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in rows %}
+            <tbody>
+                <tr>
+                    {% for value in row.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    {{ super() }}
+    <script>
+        $(document).ready(function() {
+            var container = document.getElementById('editor');
+            var myCodeMirror = CodeMirror.fromTextArea(container, {
+                lineNumbers: true,
+                mode: 'sql',
+                vimMode: true,
+            });
+        });
+    </script>
+{% endblock %}
