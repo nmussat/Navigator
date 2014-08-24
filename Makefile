@@ -9,7 +9,7 @@ all: test
 
 clean:
 	find . -name '*.pyc' -delete
-	rm -r *.egg-info
+	rm -rf *.egg-info
 
 tests:
 	APP_SETTINGS=${TEST_SETTINGS_FILE} python setup.py test
