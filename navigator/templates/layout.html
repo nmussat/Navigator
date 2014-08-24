@@ -46,7 +46,7 @@
                         },
                         sorter: function(items) { return items; },
                         source: function(query, process) {
-                            var url = '/schemas/?q=' + encodeURIComponent(query);
+                            var url = "{{ url_for('navigator.index') }}?q=" + encodeURIComponent(query);
                             $.getJSON(url, function(data) {
                                 return process(data.matches);
                             });

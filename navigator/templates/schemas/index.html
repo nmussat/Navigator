@@ -8,7 +8,7 @@
         <tbody>
             {% for schema in schemas %}
                 <tr>
-                    <td><a href="/schemas/{{ schema }}/tables">{{ schema }}</a></td>
+                    <td><a href="{{ url_for('navigator.tables', schema=schema) }}">{{ schema }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
