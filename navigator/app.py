@@ -10,6 +10,8 @@ def register_blueprints(app):
     app.register_blueprint(navigator, url_prefix='/schemas')
 
 def register_extension(app):
+    from .assets import assets
+    assets.init_app(app)
     from .models import db
     db.init_app(app)
 

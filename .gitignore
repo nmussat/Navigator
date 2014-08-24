@@ -1,2 +1,5 @@
 *.pyc
 settings_*.py
+
+navigator/static/build/*
+navigator/static/.webassets-cache/*
