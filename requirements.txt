@@ -1,5 +1,5 @@
-git+http://github.com/mitsuhiko/flask.git
-git+http://github.com/mitsuhiko/flask-sqlachemy.git
+git+https://github.com/mitsuhiko/flask.git
+git+https://github.com/mitsuhiko/flask-sqlalchemy.git
 Flask-Assets
 cssmin
 psycopg2
